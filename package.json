@@ -1,0 +1,44 @@
+{
+  "name": "dtor-api",
+  "version": "0.0.1",
+  "description": "Cloud based torrent service",
+  "main": "server.js",
+  "scripts": {
+    "start": "./bin/start",
+    "dev": "./bin/dev",
+    "debug": "./bin/debug",
+    "test": "./bin/test"
+  },
+  "author": "Joshua N. Cox <joshua.n.cox@gmail.com> (http://jonoco.me/)",
+  "license": "MIT",
+  "engines": {
+    "node": "6.1.x",
+    "npm": "3.8.x"
+  },
+  "dependencies": {
+    "archiver": "1.0.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "1.14.2",
+    "cors": "2.7.1",
+    "express": "4.13.3",
+    "google-auth-library": "0.9.8",
+    "googleapis": "7.1.0",
+    "jwt-simple": "0.5.0",
+    "lodash": "4.12.0",
+    "morgan": "1.7.0",
+    "passport": "0.3.2",
+    "passport-jwt": "2.0.0",
+    "passport-local": "1.0.0",
+    "pg": "4.4.3",
+    "pg-hstore": "2.3.2",
+    "sequelize": "3.23.2",
+    "socket.io": "1.4.6",
+    "webtorrent": "0.94.3"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "debug": "2.2.0",
+    "mocha": "^2.3.4",
+    "nodemon": "^1.8.1"
+  }
+}

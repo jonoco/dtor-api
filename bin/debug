@@ -1,0 +1,1 @@
+source ./bin/key ; DEBUG=app:* MODE=dev nodemon server 
