@@ -6,7 +6,7 @@ function TorrentClient() {
 	TorrentClient.client = new WebTorrent();
 
 	TorrentClient.client.on('error', err => {
-		debug(`Error: ${err.message}`);
+		debug(`client error: ${err.message}`);
 	});
 	
 	return TorrentClient;
@@ -14,10 +14,15 @@ function TorrentClient() {
 
 TorrentClient.addTorrent = function(link) {
 	return new Promise((resolve, reject) => {
-		TorrentClient.client.add(link, torrent => {
+		const newTorrent = TorrentClient.client.add(link, torrent => {
 			debug(`torrent added: ${torrent.name}`);
 			resolve(torrent);
 		});		
+
+		newTorrent.on('error', err => {
+			debug(`torrent error: ${err.message}`);
+			reject(err);
+		})
 	});
 }
 
