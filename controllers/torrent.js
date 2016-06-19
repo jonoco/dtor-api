@@ -69,7 +69,7 @@ function upload(userID, username, torrentID) {
 			
 			reject(err);
 
-			debug(err.message);
+			debug(`error: ${err.code} - ${err.message}`);
 		});
 	});
 }
@@ -80,14 +80,14 @@ function upload(userID, username, torrentID) {
 	@param torrent (object) - torrent object to delete
 
 	@returns (Promise)
-		resolve (object) - torrent object deleted
+		resolve (string) - torrent infohash of deleted torrent
 		reject (object) - error object
 */
 function deleteTorrent(torrent) {
 	return new Promise((resolve, reject) => {
 		deleteFile(torrent.files, torrent.path)
 		.then(deletedFiles => {
-			resolve(removedTorrent)
+			resolve(torrent.infoHash);
 
 			// remove torrent from client
 			return removeTorrent(torrent.infoHash);
@@ -112,9 +112,15 @@ function deleteTorrent(torrent) {
 		torrentID (string) - deleted torrent infohash
 */
 exports.deleteTorrent = function(req, res, next) {
-	const torrentID = req.body.torrentID;
+	const { id } = req.params;
+	const torrent = getTorrent(id);
 
-	deleteTorrent(torrentID)
+	debug(`deleting torrent: ${id}`);
+
+	// TODO
+	// first check if this torrent belongs to this user
+
+	deleteTorrent(torrent)
 	.then(id => {
 		res.json({ torrentID: id });	
 	})
@@ -178,7 +184,7 @@ exports.getTorrent = function(req, res, next) {
 			const message = { 
 				id: torrent.infoHash, 
 				name: torrent.name, 
-				progress: 0, 
+				progress: torrent.progress, 
 				uploaded: false, 
 				downloaded: false 
 			};

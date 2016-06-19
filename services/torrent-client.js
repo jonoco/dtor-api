@@ -5,9 +5,9 @@ function TorrentClient() {
 	debug('creating client');
 	TorrentClient.client = new WebTorrent();
 
-	// TorrentClient.client.on('error', err => {
-	// 	debug(`Error: ${err.message}`);
-	// });
+	TorrentClient.client.on('error', err => {
+		debug(`Error: ${err.message}`);
+	});
 	
 	return TorrentClient;
 }
@@ -17,9 +17,7 @@ TorrentClient.addTorrent = function(link) {
 		TorrentClient.client.add(link, torrent => {
 			debug(`torrent added: ${torrent.name}`);
 			resolve(torrent);
-		});
-
-		
+		});		
 	});
 }
 

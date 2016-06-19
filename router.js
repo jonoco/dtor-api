@@ -17,6 +17,6 @@ router.get('/login/drive', requireAuth, DrivController.login);
 router.get('/auth', requireAuth, DrivController.authClient);
 router.post('/torrent', requireAuth, TorrController.getTorrent);
 router.get('/torrent/:id', TorrController.downloadTorrent);
-router.delete('/torrent', TorrController.deleteTorrent)
+router.delete('/torrent/:id', TorrController.deleteTorrent)
 
 module.exports = router;
