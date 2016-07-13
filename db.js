@@ -1,8 +1,24 @@
 const Sequelize = require('sequelize');
 
 const DATABASE_URL = process.env.DATABASE_URL || 'postgres://localhost:5432/dtor';
+let seq;
 
-const seq = new Sequelize(DATABASE_URL, { dialect: 'postgres' });
+if (process.env.DATABASE_URL) {
+	// production; heroku
+
+	seq = new Sequelize(DATABASE_URL, { 
+		dialect: 'postgres', 
+		dialectOptions: {
+       ssl: true
+    },
+    logging : true
+	});
+} else {
+	// development; local
+
+	seq = new Sequelize(DATABASE_URL, { dialect: 'postgres' });
+}
+
 
 let db = {};
 db.user = seq.import(`${__dirname}/models/user.js`);
