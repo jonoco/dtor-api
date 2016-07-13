@@ -7,12 +7,10 @@ if (process.env.DATABASE_URL) {
 	// production; heroku
 
 	seq = new Sequelize(DATABASE_URL, { 
-		dialect: 'postgres',
-		protocol: 'postgres',
+		logging: false,
 		dialectOptions: {
        ssl: true
-    },
-    logging : false
+    }
 	});
 } else {
 	// development; local
