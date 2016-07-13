@@ -11,7 +11,7 @@ if (process.env.DATABASE_URL) {
 		dialectOptions: {
        ssl: true
     },
-    logging : true
+    logging : false
 	});
 } else {
 	// development; local
