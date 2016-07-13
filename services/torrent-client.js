@@ -20,7 +20,7 @@ TorrentClient.addTorrent = function(link) {
 		});		
 
 		newTorrent.on('error', err => {
-			debug(`torrent error: ${err.message}`);
+			debug(err);
 			reject(err);
 		})
 	});

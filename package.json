@@ -4,7 +4,7 @@
   "description": "Cloud based torrent service",
   "main": "server.js",
   "scripts": {
-    "start": "./bin/start",
+    "start": "node server",
     "dev": "./bin/dev",
     "debug": "./bin/debug",
     "test": "./bin/test"
