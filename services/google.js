@@ -22,7 +22,7 @@ const generateClient = function() {
 
 	return new Promise((resolve, reject) => {
 	  const REDIRECT_PATH = process.env.NODE_ENV === 'production' ?
-	                       	'https://dtor.herokuapp.com/auth' :
+	                       	'https://dtor-api.herokuapp.com/auth' :
 	                       	'http://localhost:3000/auth';
 	  const auth = new googleAuth();
 		const client = new auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_PATH);
